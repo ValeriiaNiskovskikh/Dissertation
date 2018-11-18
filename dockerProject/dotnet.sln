@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{AABCE3E7-0F12-4EFE-88FE-D522C773A710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Domain\Core\Core.csproj", "{0ED1994F-6DDD-469C-9A18-748209739D9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E59F026E-57DC-4026-8C09-D364C9F8BC8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postgres", "Postgres", "{7EFBF374-60D9-467B-ADAF-75CE929AC603}"
+ProjectSection(SolutionItems) = preProject
+	Postgres\docker-compose.yml = Postgres\docker-compose.yml
+	Postgres\Dockerfile = Postgres\Dockerfile
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "initDb", "initDb", "{410FD2DE-8BB5-4227-A72A-4B14CB27E42E}"
+ProjectSection(SolutionItems) = preProject
+	Postgres\initDb\postgersInit.sql = Postgres\initDb\postgersInit.sql
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "Domain\UseCases\UseCases.csproj", "{48297DAF-5CBE-46D8-9093-E7688EF61CF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{378A5A4D-37F9-471A-B2A1-A1A720E9F62E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalResources", "Infrastructure\ExternalResources\ExternalResources.csproj", "{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{49CFB565-FE66-4FDA-9AF6-DD36E470A159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTests", "Tests\CoreTests\CoreTests.csproj", "{6C2F1804-3D67-4677-A87F-514B6DE0FE21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AABCE3E7-0F12-4EFE-88FE-D522C773A710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABCE3E7-0F12-4EFE-88FE-D522C773A710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABCE3E7-0F12-4EFE-88FE-D522C773A710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABCE3E7-0F12-4EFE-88FE-D522C773A710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED1994F-6DDD-469C-9A18-748209739D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED1994F-6DDD-469C-9A18-748209739D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED1994F-6DDD-469C-9A18-748209739D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED1994F-6DDD-469C-9A18-748209739D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48297DAF-5CBE-46D8-9093-E7688EF61CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48297DAF-5CBE-46D8-9093-E7688EF61CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48297DAF-5CBE-46D8-9093-E7688EF61CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48297DAF-5CBE-46D8-9093-E7688EF61CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2F1804-3D67-4677-A87F-514B6DE0FE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2F1804-3D67-4677-A87F-514B6DE0FE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2F1804-3D67-4677-A87F-514B6DE0FE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2F1804-3D67-4677-A87F-514B6DE0FE21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0ED1994F-6DDD-469C-9A18-748209739D9E} = {E59F026E-57DC-4026-8C09-D364C9F8BC8A}
+		{410FD2DE-8BB5-4227-A72A-4B14CB27E42E} = {7EFBF374-60D9-467B-ADAF-75CE929AC603}
+		{48297DAF-5CBE-46D8-9093-E7688EF61CF4} = {E59F026E-57DC-4026-8C09-D364C9F8BC8A}
+		{1F9B7D2D-0839-40B6-9E33-D35A352ED4BA} = {378A5A4D-37F9-471A-B2A1-A1A720E9F62E}
+		{6C2F1804-3D67-4677-A87F-514B6DE0FE21} = {49CFB565-FE66-4FDA-9AF6-DD36E470A159}
+	EndGlobalSection
+EndGlobal
