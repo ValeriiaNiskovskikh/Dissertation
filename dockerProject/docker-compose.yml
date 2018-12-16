@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  
+  postgresdb:
+    image: postgresdb
+    build:
+      context: .
+      dockerfile: Postgres/DockerfileProd
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Test_1234
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+
+  webapp:
+    image: webapp
+    build:
+      context: .
+      dockerfile: WebApp/DockerfileProd
+    ports:
+    - 5000:80
+
+volumes:
+  pgdata:
