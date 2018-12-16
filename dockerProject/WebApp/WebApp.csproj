@@ -24,6 +24,18 @@
       <Folder Include="Areas\Api\V1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Core\Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="ClientApp\components\assay\createAssaySource.ts" />
+      <Content Include="ClientApp\components\assay\createAssaySource.vue.html" />
+      <Content Include="ClientApp\components\resource\resource.ts" />
+      <Content Include="ClientApp\components\source\source.ts" />
+      <Content Include="ClientApp\components\source\source.vue.html" />
+    </ItemGroup>
+
     <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
         <!-- Ensure Node.js is installed -->
         <Exec Command="node --version" ContinueOnError="true">

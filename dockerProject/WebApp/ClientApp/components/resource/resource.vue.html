@@ -1,0 +1,18 @@
+<template>
+
+    <table v-if="resources.length" class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in resources">
+            <td>{{ item.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+</template>
+
+
+<script src="./resource.ts"></script>

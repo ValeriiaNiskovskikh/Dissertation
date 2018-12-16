@@ -1,0 +1,26 @@
+<template>
+<div>
+   <p>
+    <h1>Проба {{source.name}}</h1>
+    <input  v-model="date" class="input-sm"/> <span class="label label-info">default user</span>
+   </p> 
+    <table v-if="assayResources.length" class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in assayResources">
+            <td>{{ item.resource.name }}</td>
+            <td> <input v-model="item.value"> </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-success">save</button>
+</div>
+</template>
+
+
+<script src="./createAssaySource.ts"></script>
