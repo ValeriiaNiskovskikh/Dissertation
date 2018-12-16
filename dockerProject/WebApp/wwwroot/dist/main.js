@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "da77a7486c7941e34482"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7c22c9d21c882a1662ea"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -4757,7 +4757,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           item.value = $event.target.value
         }
       }
-    })])])
+    }), _vm._v(" мг/дм(3) ")])])
   }))]) : _vm._e(), _vm._v(" "), _c('button', {
     staticClass: "btn btn-success"
   }, [_vm._v("save")])])
