@@ -1,3 +1,0 @@
-FROM postgres:11.1
-EXPOSE 5432
-COPY Postgres/initDb/*.sql /docker-entrypoint-initdb.d/*.sql

@@ -5,8 +5,8 @@ services:
   postgresdb:
     image: postgresdb
     build:
-      context: .
-      dockerfile: Postgres/DockerfileProd
+      context: Postgres
+      dockerfile: Dockerfile
     ports:
     - 5432:5432
     environment:
@@ -20,7 +20,7 @@ services:
     image: webapp
     build:
       context: .
-      dockerfile: WebApp/DockerfileProd
+      dockerfile: Dockerfile
     ports:
     - 5000:80
 

@@ -6,21 +6,44 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-let FetchDataComponent = class FetchDataComponent extends Vue {
+export class Source {
+    constructor() {
+        this.id = "";
+        this.name = "";
+        this.resources = [];
+    }
+}
+let SourceComponent = class SourceComponent extends Vue {
     constructor() {
         super(...arguments);
-        this.forecasts = [];
+        this.sources = [];
     }
     mounted() {
-        fetch('api/SampleData/WeatherForecasts')
+        fetch('api/v1/source/getAll')
             .then(response => response.json())
             .then(data => {
-            this.forecasts = data;
+            this.sources = data;
         });
     }
+    getGroups(count) {
+        let c = 0;
+        let result = [];
+        let tmp = [];
+        for (let s of this.sources) {
+            c++;
+            tmp.push(s);
+            if (c == count) {
+                c = 0;
+                result.push(tmp);
+                tmp = [];
+            }
+        }
+        result.push(tmp);
+        return result;
+    }
 };
-FetchDataComponent = __decorate([
+SourceComponent = __decorate([
     Component
-], FetchDataComponent);
-export default FetchDataComponent;
-//# sourceMappingURL=fetchdata.js.map
+], SourceComponent);
+export default SourceComponent;
+//# sourceMappingURL=source.js.map

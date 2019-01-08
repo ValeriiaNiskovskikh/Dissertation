@@ -4,15 +4,15 @@ import {Resource} from "../resource/resource";
 import {Source} from "../source/source";
 
 export class AssayResource{
- resource: Resource;
- value: ConstrainDouble;
+ resource: Resource = new Resource();
+ value: ConstrainDouble = 0.0;
 }
 
 @Component
 export default class CreateAssaySourceComponent extends Vue {
-    source: Source;
+    source: Source = new Source();
     assayResources: AssayResource[] = [];
-    sourceId : string;
+    sourceId : string = "";
     date: Date = new Date();
     mounted() {
     }

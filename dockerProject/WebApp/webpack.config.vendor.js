@@ -1,14 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
     const extractCSS = new ExtractTextPlugin('vendor.css');
 
     return [{
+        mode: isDevBuild? 'development' : 'production',
         stats: { modules: false },
-        resolve: { extensions: [ '.js' ] },
+        resolve: { extensions: [ '.js', '.ts', '.vue'] },
         entry: {
             vendor: [
                 'bootstrap',
@@ -22,8 +24,10 @@ module.exports = (env) => {
         },
         module: {
             rules: [
-                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) },
-                { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
+                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader' }) },
+                { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' },
+                { test: /\.vue$/, loader: 'vue-loader' },
+                { test: /\.vue\.html$/, loader: 'vue-loader' }
             ]
         },
         output: { 
@@ -33,6 +37,7 @@ module.exports = (env) => {
             library: '[name]_[hash]'
         },
         plugins: [
+            new VueLoaderPlugin(),
             extractCSS,
             new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.DefinePlugin({
@@ -43,7 +48,6 @@ module.exports = (env) => {
                 name: '[name]_[hash]'
             })
         ].concat(isDevBuild ? [] : [
-            new webpack.optimize.UglifyJsPlugin()
         ])
     }];
 };

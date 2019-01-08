@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 
-export interface Resource {
-    id: string;
-    name: string;
+export class Resource {
+    id: string = "";
+    name: string = "";
 }
 
 @Component

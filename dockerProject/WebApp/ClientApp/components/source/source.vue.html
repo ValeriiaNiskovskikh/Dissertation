@@ -1,39 +1,52 @@
 <template>
+    <div v-if="sources.length">
+        <div class="row container-fluid float-left">
+            <div>
+                <a class="badge badge-success" data-toggle="collapse" href="#d_map" data-target="#d_map">На карте</a>
+                <a class="badge badge-secondary" data-toggle="collapse" href="#d_cards"
+                   data-target="#d_cards">Список</a>
+            </div>
+            <hr/>
 
-    <table v-if="sources.length" class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Resources</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="item in sources">
-            <td>{{ item.name }}
-                <div>
-                    <router-link :to="'/sources/'+item.id+'/createAssay'" class="label label-primary control-label">create assay</router-link>
-                    <a href="" class="label label-primary  control-label">show details</a>
+        </div>
+        <div class="collapse show row"  id="d_map">
+            <div class="container flex-fill" style="min-height: 600px;">
+                <l-map id="mymap"  :zoom="13" :center="[30.2792953, 120.1198430]">
+                    <l-tile-layer :url="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'" ></l-tile-layer>
+                    <l-marker :lat-lng="[30.2792953, 120.1198430]" :radius="8" :color="'red'">
+                        <l-popup >Всё плохо :(</l-popup>
+                        <l-tooltip :options="{permanent: true, interactive: true}" @click="" >Источник 1</l-tooltip>
+                    </l-marker>
+                </l-map>
+                <hr/>
+
+            </div>
+        </div>
+        <div class="row collapse" id="d_cards">
+            <div class="container-fluid">
+                <div v-for="t in getGroups(3)" class="card-deck">
+                    <div v-for="item in t" class="card col-md-4 mb-2 pb-3 badge-secondary text-white">
+                        <div class="card-header ">{{item.name}}
+                            <a href="" class="float-right small badge badge-dark">settings</a></div>
+                        <div class="card-body">
+                            <p v-for="item in item.resources" class="card-text">
+                                {{ item.name }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <router-link :to="'/sources/'+item.id+'/createAssay'" class="badge badge-info">
+                                Добавить пробу
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
-            </td>
-            <td>
-                <table v-if="item.resources.length" class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="item in item.resources">
-                        <td>{{ item.name }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </div>
 </template>
 
-
 <script src="./source.ts"></script>
+
+<style type="text/css">
+    @import '~leaflet/dist/leaflet.css';
+</style>

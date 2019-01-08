@@ -3,21 +3,51 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const bundleOutputDir = './wwwroot/dist';
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
 
     return [{
-        stats: { modules: false },
+        mode: isDevBuild? 'development' : 'production',
+        stats: {modules: false},
         context: __dirname,
-        resolve: { extensions: [ '.js', '.ts' ] },
-        entry: { 'main': './ClientApp/boot.ts' },
+        resolve: {extensions: ['.js', '.ts', '.vue']},
+        entry: {'main': './ClientApp/boot.ts'},
         module: {
             rules: [
-                { test: /\.vue\.html$/, include: /ClientApp/, loader: 'vue-loader', options: { loaders: { js: 'awesome-typescript-loader?silent=true' } } },
-                { test: /\.ts$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
-                { test: /\.css$/, use: isDevBuild ? [ 'style-loader', 'css-loader' ] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                {
+                    test: /\.vue\.html$/,
+                    include: /ClientApp/,
+                    loader: 'vue-loader',
+                    options: {loaders: {js: 'awesome-typescript-loader?silent=true'}}
+                },
+                {test: /\.ts$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true'},
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader']
+                },
+                // {test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=35000000'},
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name:'img/[name]_[hash:7].[ext]',
+                        }}]
+                },
+                // {
+                //     test: /\.vue$/,
+                //     loader: 'vue-loader'
+                // },
+                // {
+                //     test: /\.js$/,
+                //     loader: 'script-loader'
+                // },
+                // {
+                //     test: /\.ts$/,
+                //     loader: 'vue-loader'
+                // }
             ]
         },
         output: {
@@ -26,6 +56,7 @@ module.exports = (env) => {
             publicPath: 'dist/'
         },
         plugins: [
+            new VueLoaderPlugin(),
             new CheckerPlugin(),
             new webpack.DefinePlugin({
                 'process.env': {
@@ -44,8 +75,7 @@ module.exports = (env) => {
             })
         ] : [
             // Plugins that apply in production builds only
-            new webpack.optimize.UglifyJsPlugin(),
             new ExtractTextPlugin('site.css')
-        ])
+        ]), 
     }];
 };

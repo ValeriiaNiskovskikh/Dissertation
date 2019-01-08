@@ -6,17 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-let CounterComponent = class CounterComponent extends Vue {
+export class Resource {
+    constructor() {
+        this.id = "";
+        this.name = "";
+    }
+}
+let ResourceComponent = class ResourceComponent extends Vue {
     constructor() {
         super(...arguments);
-        this.currentcount = 0;
+        this.resources = [];
     }
-    incrementCounter() {
-        this.currentcount++;
+    mounted() {
+        fetch('api/v1/resource/getAll')
+            .then(response => response.json())
+            .then(data => {
+            this.resources = data;
+        });
     }
 };
-CounterComponent = __decorate([
+ResourceComponent = __decorate([
     Component
-], CounterComponent);
-export default CounterComponent;
-//# sourceMappingURL=counter.js.map
+], ResourceComponent);
+export default ResourceComponent;
+//# sourceMappingURL=resource.js.map

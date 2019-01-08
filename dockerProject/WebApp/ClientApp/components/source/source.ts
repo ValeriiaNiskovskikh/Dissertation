@@ -2,10 +2,11 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import {Resource} from '../resource/resource';
 
-export interface Source {
-    id: string;
-    name: string;
-    resources: Resource[];
+
+export class Source {
+    id: string = "";
+    name: string = "";
+    resources: Resource[] = [];
 }
 
 @Component
@@ -17,5 +18,22 @@ export default class SourceComponent extends Vue {
             .then(data => {
                 this.sources = data;
             });
+     
+    }
+    getGroups(count:number){
+        let c = 0;
+        let result = [];
+        let tmp :Source[]=[];
+        for (let s of this.sources) {
+            c++;
+            tmp.push(s);
+            if(c==count){
+                c=0;
+                result.push(tmp);
+                tmp=[];
+            }
+        }
+        result.push(tmp);
+        return result;
     }
 }
